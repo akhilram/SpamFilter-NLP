@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="SPAM filter based on Naive Bayes model : SPAM classifier for textual data">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>SPAM filter based on Naive Bayes model</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/akhilram/SpamFilter-NLP">View on GitHub</a>
+
+          <h1 id="project_title">SPAM filter based on Naive Bayes model</h1>
+          <h2 id="project_tagline">SPAM classifier for textual data</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/akhilram/SpamFilter-NLP/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/akhilram/SpamFilter-NLP/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="spam-filter" class="anchor" href="#spam-filter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Spam Filter</h1>
+
+<h2>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description</h2>
+
+<p>A Spam filter, that classifies electronic mails using Naive Bayes approach with add-one smoothing.
+Features used: Bag of words with associated probabilities</p>
+
+<h2>
+<a id="running-instructions" class="anchor" href="#running-instructions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running instructions</h2>
+
+<p>The filter can be used ad-hoc with the model provided (spam.nb) or it can be retrained with new data.</p>
+
+<h3>
+<a id="1-ad-hoc-classification" class="anchor" href="#1-ad-hoc-classification" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Ad-hoc classification</h3>
+
+<p>Classification can be done using the following command</p>
+
+<p>python3 nbclassify.py modelfile testfile</p>
+
+<p>The modelfile in this case is spam.nb
+The testfile has to be formatted in such a way that each line corresponds to a single batch of text that needs to be classified.</p>
+
+<h3>
+<a id="2-retraining-and-classification" class="anchor" href="#2-retraining-and-classification" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Retraining and classification</h3>
+
+<p>Retraining is to be done in two phases: Data formatting and Model generation</p>
+
+<h4>
+<a id="data-formatting" class="anchor" href="#data-formatting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data formatting</h4>
+
+<p>In this stage the individual text files to be used for training are aggregated to one single training file.
+Follow the naming convension for naming files. 
+SPAM# for files whose contents are spam and HAM# for other files.
+Put all such files into a seperate folder along with parsetraining.py and run using the following command</p>
+
+<p>python3 parsetraining.py spam</p>
+
+<h4>
+<a id="model-generation" class="anchor" href="#model-generation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Model generation</h4>
+
+<p>The data formatting phase generates a training file spam_training.txt and this file is used to train the model. The training 
+is done with the following command</p>
+
+<p>python3 nblearn.py trainingfile modelfile</p>
+
+<p>Model generation phase can also be associated with an evaluation step using a heldout development set, which measures the performance of the model.
+The command is as follows</p>
+
+<p>python3 nbclassify.py modelfile devfile eval</p>
+
+<p>This will generate a text file evaluation.txt that contain the evaluation report</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">SPAM filter based on Naive Bayes model maintained by <a href="https://github.com/akhilram">akhilram</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
