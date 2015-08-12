@@ -1,3 +1,4 @@
+#parses training files to the required input format for the learner
 import os
 from os import walk
 import sys
@@ -5,6 +6,7 @@ import sys
 path = os.getcwd()
 Files = []
 
+# choose appropriate output file
 if sys.argv[1] == 'spam':
     output = open('spam_training.txt', 'w', encoding= 'utf-8', errors = 'ignore')
 else:
@@ -14,6 +16,7 @@ for (dirpath,dirnames,filenames) in walk(path):
     Files.extend(filenames)
     break
 
+# append files to a single file
 for f in Files:
     outline = ''
     if f.endswith('~') or f.endswith('.nb') or f == 'spam_training.txt' or f == 'parsetraining.py' or f.endswith('training.txt'):

@@ -1,9 +1,12 @@
+#parses test files to the required input format for the classifier
 import os
 from os import walk
 import sys
 
 path = os.getcwd()
 Files = []
+
+# choose appropriate output file
 if sys.argv[1]=='spam':
     output = open('spam_test.txt', 'w', encoding= 'utf-8', errors='ignore')
 else:
@@ -13,6 +16,7 @@ for (dirpath, dirnames, filenames) in walk(path):
     Files.extend(filenames)
     break
 
+# append files to a single file
 for f in Files:
     outline = ''
     if f.endswith('~') or f.endswith('.nb') or f.endswith('test.txt') or f=='parsetest.py':

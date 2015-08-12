@@ -1,11 +1,13 @@
 import sys
 import re
 
+#initialize file pointers
 model = open(sys.argv[1], 'r', encoding = 'utf-8', errors = 'ignore')
 train = open(sys.argv[2], 'r', encoding = 'utf-8', errors = 'ignore')
 
 startindex = 0
 
+#choose output file based on input arg
 if sys.argv[1]=='spam.nb':
     output = open('spam.out', 'w', encoding = 'utf-8', errors = 'ignore')
 else:
@@ -16,6 +18,7 @@ if sys.argv.__len__() == 4:
     error = open('error.txt', 'w')
     evaluation = open('evaluation.txt', 'w')
 
+#initialize vocabulary and model variables
 classes = []
 total = 0
 Dict = {}
@@ -34,11 +37,11 @@ for i in range(0,count):
     total += int(words[1])
     p_class.append(1)
 
+#initialize the naive bayes matrix with empty values
 vcount = int(model.readline())
 line = model.readline()
 while line:
     words = line.split()
-    # words = (re.split('\*| |&|\||>|<|\(|\)|\.|\,|{|}|-|!|~|#|\$|\^|%|:|;|\+|=|\?|/|"|`', line))
     tup = ()
     for i in range(1,words.__len__()):
         new = (str(words[i]),)
@@ -51,10 +54,10 @@ while line:
     line = model.readline()
 ocount = 0
 
+#read input, for each token calculate the probability of belonging to various classes and update the matrix
 line = train.readline()
 while line:
     words = line.split()
-    # words = (re.split('\*| |&|\||>|<|\(|\)|\.|\,|{|}|-|!|~|#|\$|\^|%|:|;|\+|=|\?|/|"|`', line))
     for i in range(0,count):
         p_class[i] = 1
     for w in words[startindex : words.__len__()]:
@@ -124,6 +127,7 @@ while line:
                 break
         eval[p] = (eval[p][0], eval[p][1], eval[p][2]+1)
 #####################
+#write results to output file
     output.write(classes[index][0] + '\n')
     print(classes[index][0])
     line = train.readline()
